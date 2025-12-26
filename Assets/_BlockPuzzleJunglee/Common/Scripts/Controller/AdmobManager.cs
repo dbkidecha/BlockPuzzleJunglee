@@ -46,7 +46,7 @@ public class AdmobManager : MonoBehaviour, IUnityAdsInitializationListener, IUni
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(HandleInitCompleteAction);
 
-        remoteAdsCount = RemoteConfig.instance.adsOnClick;
+        //remoteAdsCount = RemoteConfig.instance.adsOnClick;
     }
 
     private void HandleInitCompleteAction(InitializationStatus initstatus)
@@ -251,7 +251,7 @@ public class AdmobManager : MonoBehaviour, IUnityAdsInitializationListener, IUni
 
     public bool ShowInterstitial()
     {
-        if (interstitial == null || !RemoteConfig.instance.adsEnable)
+        if (interstitial == null)
             return false;
 
         if (interstitial.IsLoaded())
@@ -296,8 +296,6 @@ public class AdmobManager : MonoBehaviour, IUnityAdsInitializationListener, IUni
     public void HandleAdLoaded(object sender, EventArgs args)
     {
         print("HandleAdLoaded event received.");
-        if (!RemoteConfig.instance.adsEnable)
-            DestroyBanner();
     }
 
     public void HandleAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
@@ -308,8 +306,6 @@ public class AdmobManager : MonoBehaviour, IUnityAdsInitializationListener, IUni
     public void HandleAdOpened(object sender, EventArgs args)
     {
         print("HandleAdOpened event received");
-        if (!RemoteConfig.instance.adsEnable)
-            DestroyBanner();
     }
 
     public void HandleAdClosed(object sender, EventArgs args)
